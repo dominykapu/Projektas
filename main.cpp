@@ -17,12 +17,35 @@ struct studentas {
     double rez;
     };
 
+double Galutinis(vector<int> paz, int egz);
+void IvestiStudenta(vector<studentas>& grupe);
+void Spausdinti(vector<studentas>& grupe);
+
 int main(){
     studentas A;
     vector<studentas> grupe;
-    while (true){
+
+    while (true) {
+        IvestiStudenta(grupe);
+        char kl;
+        cout << "Ar turite dar studentu? t/n ";
+        cin >> kl;
+        if (kl == 'n' || kl == 'N')
+            break;
+    }
+    Spausdinti(grupe);
+}
+
+double Galutinis(vector<int> paz, int egz){
+    double vid = std::accumulate(paz.begin(), paz.end(), 0.0) / paz.size();
+    return 0.4 * vid + 0.6 * egz;
+}
+
+void IvestiStudenta(vector<studentas>& grupe){
+    studentas A;
     cout<<"Iveskite varda: "; cin>>A.var;
     cout<<"Iveskite pavarde: "; cin>>A.pav;
+
     while (true){
         int n;
         char kl;
@@ -30,16 +53,14 @@ int main(){
         cout<<"Ar studentas turi dar pazymiu? t/n "; cin>>kl;
         if (kl == 'n' || kl == 'N') break;
     }
+
     cout<<"Iveskite egzamina: "; cin>>A.egz;
-    A.rez=0.4*std::accumulate(A.paz.begin(), A.paz.end(), 0.0)/A.paz.size() + 0.6*A.egz;
+    A.rez = Galutinis(A.paz, A.egz);
 
     grupe.push_back(A);
-    A.paz.clear();
-    char kl;
-    cout<<"Ar turite dar studentu? t/n "; cin>>kl;
-        if (kl == 'n' || kl == 'N') break;
-    }
+}
 
+void Spausdinti(vector<studentas>& grupe){
     cout<<"Studento duomenys: \n";
     cout<<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
     cout<<"|"<<right<<setw(15)<<"Galutinis (Vid)"<<"|\n";
@@ -52,5 +73,4 @@ int main(){
         cout<<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
         cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<B.rez<<"|\n";
     }
-
 }
