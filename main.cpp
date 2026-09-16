@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <numeric>
+#include <algorithm>
 using std::cin;
 using std::cout;
 using std::left;
@@ -17,7 +18,8 @@ struct studentas {
     double rez;
     };
 
-double Galutinis(vector<int> paz, int egz);
+double GalutinisVid(vector<int> paz, int egz);
+double GalutinisMed(vector<int> paz, int egz);
 void IvestiStudenta(vector<studentas>& grupe);
 void Spausdinti(vector<studentas>& grupe);
 
@@ -36,9 +38,19 @@ int main(){
     Spausdinti(grupe);
 }
 
-double Galutinis(vector<int> paz, int egz){
+double GalutinisVid(vector<int> paz, int egz){
     double vid = std::accumulate(paz.begin(), paz.end(), 0.0) / paz.size();
     return 0.4 * vid + 0.6 * egz;
+}
+
+double GalutinisMed(vector<int> paz, int egz){
+    std::sort(paz.begin(), paz.end());
+    int paz_sk = paz.size();
+    double med;
+    if (paz_sk%2 == 0) med = (paz[paz_sk/2-1]+paz[paz_sk/2])/2.0;
+    else med = paz[paz_sk/2];
+    return 0.4 * med + 0.6 * egz;
+
 }
 
 void IvestiStudenta(vector<studentas>& grupe){
@@ -55,7 +67,7 @@ void IvestiStudenta(vector<studentas>& grupe){
     }
 
     cout<<"Iveskite egzamina: "; cin>>A.egz;
-    A.rez = Galutinis(A.paz, A.egz);
+    A.rez = GalutinisVid(A.paz, A.egz);
 
     grupe.push_back(A);
 }
