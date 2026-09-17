@@ -15,16 +15,14 @@ struct studentas {
     std::string var, pav;
     std::vector<int> paz;
     int egz;
-    double rez;
     };
 
 double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
 void IvestiStudenta(vector<studentas>& grupe);
-void Spausdinti(vector<studentas>& grupe);
+void Spausdinti(vector<studentas>& grupe, int pasirinkimas);
 
 int main(){
-    studentas A;
     vector<studentas> grupe;
 
     while (true) {
@@ -35,7 +33,16 @@ int main(){
         if (kl == 'n' || kl == 'N')
             break;
     }
-    Spausdinti(grupe);
+    int pasirinkimas;
+    cout<<"\nKaip skaiciuoti galutini bala?\n";
+    cout << "\nKaip skaiciuoti galutini bala?\n";
+    cout << "1. Pagal vidurki\n";
+    cout << "2. Pagal mediana\n";
+    cout << "3. Abu\n";
+    cout << "Pasirinkimas (Iveskite 1, 2 arba 3): ";
+    cin >> pasirinkimas;
+
+    Spausdinti(grupe, pasirinkimas);
 }
 
 double GalutinisVid(vector<int> paz, int egz){
@@ -67,22 +74,32 @@ void IvestiStudenta(vector<studentas>& grupe){
     }
 
     cout<<"Iveskite egzamina: "; cin>>A.egz;
-    A.rez = GalutinisVid(A.paz, A.egz);
 
     grupe.push_back(A);
 }
 
-void Spausdinti(vector<studentas>& grupe){
-    cout<<"Studento duomenys: \n";
-    cout<<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
-    cout<<"|"<<right<<setw(15)<<"Galutinis (Vid)"<<"|\n";
+void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
+    bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
+    bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
 
-    int br=15+20+15+2; // Bruksniai
+    cout<<"\nStudento duomenys: \n";
+    cout<<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
+    if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<"Galutinis (Vid)";
+    if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<"Galutinis (Med)";
+    cout<<"|\n";
+
+
+    int br=15+20+1; // Bruksniai
+    if (RodytiVid==true) br+=15+1;
+    if (RodytiMed==true) br+=15+1;
+
     cout<<"|";for (int i=0; i<br; i++) cout<<"-"; cout<<"|\n";
 
     for (auto B : grupe)
     {
         cout<<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
-        cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<B.rez<<"|\n";
+        if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<GalutinisVid(B.paz, B.egz);
+        if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<GalutinisMed(B.paz, B.egz);
+        cout<<"|\n";
     }
 }
