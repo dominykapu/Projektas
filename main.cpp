@@ -29,24 +29,40 @@ int main(){
     srand(time(0));
     vector<studentas> grupe;
 
-    while (true) {
-        IvestiStudenta(grupe);
-        char kl;
-        cout << "Ar turite dar studentu? t/n ";
-        cin >> kl;
-        if (kl == 'n' || kl == 'N')
-            break;
-    }
-    int pasirinkimas;
-    cout<<"\nKaip skaiciuoti galutini bala?\n";
-    cout << "\nKaip skaiciuoti galutini bala?\n";
-    cout << "1. Pagal vidurki\n";
-    cout << "2. Pagal mediana\n";
-    cout << "3. Abu\n";
-    cout << "Pasirinkimas (Iveskite 1, 2 arba 3): ";
-    cin >> pasirinkimas;
+    while (true){
+        int pasirinkimas;
+        cout<<"\n=========== MENIU ============\n";
+        cout<<"1. Ivesti studenta rankiniu budu\n";
+        cout<<"2. Generuoti pazymius\n";
+        cout<<"3. Spausdinti rezultatus\n";
+        cout<<"4. Baigti\n";
+        cout<<"Pasirinkimas (Iveskite skaiciu):";
+        cin>>pasirinkimas;
 
-    Spausdinti(grupe, pasirinkimas);
+        if (pasirinkimas == 1){
+            IvestiStudenta(grupe);
+        }
+        else if (pasirinkimas == 2){
+            GeneruotiPazymi(grupe);
+        }
+        else if (pasirinkimas == 3){
+            int kaip;
+            cout<<"\nKaip skaiciuoti galutini bala?\n";
+            cout << "1. Pagal vidurki\n";
+            cout << "2. Pagal mediana\n";
+            cout << "3. Abu\n";
+            cout << "Pasirinkimas (Iveskite 1, 2 arba 3): ";
+            cin >> kaip;
+            Spausdinti(grupe, kaip);
+        }
+        else if (pasirinkimas == 4){
+            cout<<"Baigta.\n";
+            break;
+        }
+        else{
+            cout<<"Tokio pasirinkimo nera.\n";
+        }
+    }
 }
 
 double GalutinisVid(vector<int> paz, int egz){
