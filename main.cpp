@@ -4,6 +4,8 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 using std::cin;
 using std::cout;
 using std::left;
@@ -20,9 +22,11 @@ struct studentas {
 double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
 void IvestiStudenta(vector<studentas>& grupe);
+void GeneruotiPazymi(vector<studentas>& grupe);
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas);
 
 int main(){
+    srand(time(0));
     vector<studentas> grupe;
 
     while (true) {
@@ -75,6 +79,20 @@ void IvestiStudenta(vector<studentas>& grupe){
 
     cout<<"Iveskite egzamina: "; cin>>A.egz;
 
+    grupe.push_back(A);
+}
+
+void GeneruotiPazymi(vector<studentas>& grupe){
+    studentas A;
+    cout<<"Iveskite varda: "; cin>>A.var;
+    cout<<"Iveskite pavarde: "; cin>>A.pav;
+    int kiek;
+    cout<<"Kiek generuoti pazymiu? "; cin>>kiek;
+    for (int i=0; i<kiek; i++){
+        int pazymys=rand()%10+1;
+        A.paz.push_back(pazymys);
+    }
+    A.egz=rand()%10+1;
     grupe.push_back(A);
 }
 
