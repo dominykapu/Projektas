@@ -6,16 +6,24 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 using std::cin;
 using std::cout;
 using std::left;
 using std::right;
 using std::setw;
+using std::setprecision;
+using std::accumulate;
+using std::sort;
+using std::fixed;
 using std::vector;
+using std::string;
+using std::ifstream;
+using std::getline;
 
 struct studentas {
-    std::string var, pav;
-    std::vector<int> paz;
+    string var, pav;
+    vector<int> paz;
     int egz;
     };
 
@@ -24,6 +32,7 @@ double GalutinisMed(vector<int> paz, int egz);
 void IvestiStudenta(vector<studentas>& grupe);
 void GeneruotiPazymi(vector<studentas>& grupe);
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas);
+void Nuskaitymas(vector<studentas>& grupe);
 
 int main(){
     srand(time(0));
@@ -66,12 +75,12 @@ int main(){
 }
 
 double GalutinisVid(vector<int> paz, int egz){
-    double vid = std::accumulate(paz.begin(), paz.end(), 0.0) / paz.size();
+    double vid = accumulate(paz.begin(), paz.end(), 0.0) / paz.size();
     return 0.4 * vid + 0.6 * egz;
 }
 
 double GalutinisMed(vector<int> paz, int egz){
-    std::sort(paz.begin(), paz.end());
+    sort(paz.begin(), paz.end());
     int paz_sk = paz.size();
     double med;
     if (paz_sk%2 == 0) med = (paz[paz_sk/2-1]+paz[paz_sk/2])/2.0;
@@ -132,8 +141,26 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
     for (auto B : grupe)
     {
         cout<<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
-        if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<GalutinisVid(B.paz, B.egz);
-        if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<std::fixed<<std::setprecision(2)<<GalutinisMed(B.paz, B.egz);
+        if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<fixed<<setprecision(2)<<GalutinisVid(B.paz, B.egz);
+        if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
         cout<<"|\n";
     }
+}
+void Nuskaitymas(vector<studentas>& grupe){
+    ifstream f("kursiokai.txt");
+    string antraste;
+    getline(f, antraste);
+
+    studentas A;
+    while (f>>A.var>>A.pav){
+        A.paz.clear();
+        for (int i=0; i<5; i++){
+            int pazymys;
+            f>>pazymys;
+            A.paz.push_back(pazymys);
+        }
+        f>>A.egz;
+        grupe.push_back(A);
+    }
+    f.close();
 }
