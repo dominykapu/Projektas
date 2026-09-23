@@ -51,6 +51,12 @@ int main(){
         cout<<"Pasirinkimas (Iveskite skaiciu):";
         cin>>pasirinkimas;
 
+        if (cin.fail()){
+            cout<<"Klaida! Iveskite skaiciu nuo 1 iki 5.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        }
         if (pasirinkimas == 1){
             IvestiStudenta(grupe);
         }
@@ -62,13 +68,23 @@ int main(){
         }
         else if (pasirinkimas == 4){
             int kaip;
-            cout<<"\nKaip skaiciuoti galutini bala?\n";
-            cout << "1. Pagal vidurki\n";
-            cout << "2. Pagal mediana\n";
-            cout << "3. Abu\n";
-            cout << "Pasirinkimas (Iveskite 1, 2 arba 3): ";
-            cin >> kaip;
-            Spausdinti(grupe, kaip);
+            cout <<"\nKaip skaiciuoti galutini bala?\n";
+            cout <<"1. Pagal vidurki\n";
+            cout <<"2. Pagal mediana\n";
+            cout <<"3. Abu\n";
+            cout <<"Pasirinkimas (Iveskite 1, 2 arba 3): ";
+            cin >>kaip;
+            if (cin.fail()){
+                cout <<"Klaida! Iveskite skaiciu nuo 1 iki 3.\n";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            else if (kaip<1 || kaip>3){
+                cout <<"Klaida! Iveskite 1, 2 arba 3.\n";
+            }
+            else{
+                Spausdinti(grupe, kaip);
+            }
         }
         else if (pasirinkimas == 5){
             cout<<"Baigta.\n";
@@ -81,44 +97,95 @@ int main(){
 }
 
 double GalutinisVid(vector<int> paz, int egz){
+    if (paz.empty()){ //Kad nebutu dalybos is nulio
+        return 0;
+    }
     double vid = accumulate(paz.begin(), paz.end(), 0.0) / paz.size();
     return 0.4 * vid + 0.6 * egz;
 }
 
 double GalutinisMed(vector<int> paz, int egz){
+    if (paz.empty()){ //Kad nebutu dalybos is nulio
+        return 0;
+    }
     sort(paz.begin(), paz.end());
     int paz_sk = paz.size();
     double med;
     if (paz_sk%2 == 0) med = (paz[paz_sk/2-1]+paz[paz_sk/2])/2.0;
     else med = paz[paz_sk/2];
     return 0.4 * med + 0.6 * egz;
-
 }
 
 void IvestiStudenta(vector<studentas>& grupe){
     studentas A;
-    cout<<"Iveskite varda: "; cin>>A.var;
-    cout<<"Iveskite pavarde: "; cin>>A.pav;
+    cout << "Iveskite varda: ";
+    cin >> A.var;
+    cout << "Iveskite pavarde: ";
+    cin >> A.pav;
 
     while (true){
         int n;
         char kl;
-        cout<<"Iveskite semestro pazymi: "; cin>>n; A.paz.push_back(n);
-        cout<<"Ar studentas turi dar pazymiu? t/n "; cin>>kl;
-        if (kl == 'n' || kl == 'N') break;
+        while (true){
+            cout << "Iveskite semestro pazymi: ";
+            cin >> n;
+
+            if (cin.fail()){
+                cout << "Klaida! Iveskite skaiciu.\n";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            else if (n < 1 || n > 10){
+                cout << "Klaida! Pazymys turi buti nuo 1 iki 10.\n";
+            }
+            else{
+                A.paz.push_back(n);
+                break;
+            }
+        }
+        cout << "Ar studentas turi dar pazymiu? t/n ";
+        cin >> kl;
+        if (kl == 'n' || kl == 'N'){
+            break;
+        }
     }
+    while (true){
+        cout <<"Iveskite egzamina: ";
+        cin >>A.egz;
 
-    cout<<"Iveskite egzamina: "; cin>>A.egz;
-
+        if (cin.fail()){
+            cout <<"Klaida! Iveskite skaiciu.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else if (A.egz<1 || A.egz>10){
+            cout <<"Klaida! Pazymys turi buti nuo 1 iki 10.\n";
+        }
+        else{
+            break;
+        }
+    }
     grupe.push_back(A);
 }
 
 void GeneruotiPazymi(vector<studentas>& grupe){
     studentas A;
-    cout<<"Iveskite varda: "; cin>>A.var;
-    cout<<"Iveskite pavarde: "; cin>>A.pav;
+    cout <<"Iveskite varda: "; cin>>A.var;
+    cout <<"Iveskite pavarde: "; cin>>A.pav;
     int kiek;
-    cout<<"Kiek generuoti pazymiu? "; cin>>kiek;
+    while (true){
+        cout <<"Kiek generuoti pazymiu?: ";
+        cin >> kiek;
+
+        if (cin.fail()){
+            cout <<"Klaida! Iveskite skaiciu.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else{
+            break;
+        }
+    }
     for (int i=0; i<kiek; i++){
         int pazymys=rand()%10+1;
         A.paz.push_back(pazymys);
@@ -134,25 +201,24 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
     bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
     bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
 
-    cout<<"\nStudento duomenys: \n";
-    cout<<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
-    if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<"Galutinis (Vid)";
-    if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<"Galutinis (Med)";
-    cout<<"|\n";
-
+    cout <<"\nStudento duomenys: \n";
+    cout <<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
+    if (RodytiVid == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Vid.)";
+    if (RodytiMed == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Med.)";
+    cout <<"|\n";
 
     int br=15+20+1; // Bruksniai
-    if (RodytiVid==true) br+=15+1;
-    if (RodytiMed==true) br+=15+1;
+    if (RodytiVid == true) br+=17+1;
+    if (RodytiMed == true) br+=17+1;
 
-    cout<<"|";for (int i=0; i<br; i++) cout<<"-"; cout<<"|\n";
+    cout <<"|";for (int i=0; i<br; i++) cout<<"-"; cout<<"|\n";
 
     for (auto B : grupe)
     {
-        cout<<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
-        if (RodytiVid==true) cout<<"|"<<right<<setw(15)<<fixed<<setprecision(2)<<GalutinisVid(B.paz, B.egz);
-        if (RodytiMed==true) cout<<"|"<<right<<setw(15)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
-        cout<<"|\n";
+        cout <<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
+        if (RodytiVid == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisVid(B.paz, B.egz);
+        if (RodytiMed == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
+        cout <<"|\n";
     }
 }
 void Nuskaitymas(vector<studentas>& grupe){
@@ -165,7 +231,6 @@ void Nuskaitymas(vector<studentas>& grupe){
         cout << "Nepavyko atidaryti failo.\n";
         return;
     }
-
     string antraste;
     getline(f, antraste);
 
@@ -173,16 +238,21 @@ void Nuskaitymas(vector<studentas>& grupe){
     while (getline(f, eilute)){
         stringstream ss(eilute);
         studentas A;
-        ss>>A.var;
-        ss>>A.pav;
+        ss >> A.var;
+        ss >> A.pav;
 
         int pazymys;
-        while(ss>>pazymys){
+        while (ss >> pazymys){
             A.paz.push_back(pazymys);
         }
-        A.egz=A.paz.back();
+        if (!ss.eof() || A.paz.empty()){ //Jei yra raide ciklas sustoja, nes raide negali buti ideta i pazymys
+            cout << "Klaida faile, eilute praleista: " << eilute << "\n";
+            continue;
+            }
+        A.egz = A.paz.back();
         A.paz.pop_back();
         grupe.push_back(A);
     }
+    cout << "Nuskaityta studentu: " << grupe.size() << "\n";
     f.close();
 }
