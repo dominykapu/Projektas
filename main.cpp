@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <sstream>
 using std::cin;
 using std::cout;
 using std::left;
@@ -20,6 +21,7 @@ using std::vector;
 using std::string;
 using std::ifstream;
 using std::getline;
+using std::stringstream;
 
 struct studentas {
     string var, pav;
@@ -154,19 +156,32 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
     }
 }
 void Nuskaitymas(vector<studentas>& grupe){
-    ifstream f("kursiokai.txt");
+    string failoPav;
+    cout << "Iveskite failo pavadinima: ";
+    cin >> failoPav;
+    ifstream f(failoPav);
+
+    if (!f){
+        cout << "Nepavyko atidaryti failo.\n";
+        return;
+    }
+
     string antraste;
     getline(f, antraste);
 
-    studentas A;
-    while (f>>A.var>>A.pav){
-        A.paz.clear();
-        for (int i=0; i<5; i++){
-            int pazymys;
-            f>>pazymys;
+    string eilute;
+    while (getline(f, eilute)){
+        stringstream ss(eilute);
+        studentas A;
+        ss>>A.var;
+        ss>>A.pav;
+
+        int pazymys;
+        while(ss>>pazymys){
             A.paz.push_back(pazymys);
         }
-        f>>A.egz;
+        A.egz=A.paz.back();
+        A.paz.pop_back();
         grupe.push_back(A);
     }
     f.close();
