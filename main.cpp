@@ -126,6 +126,9 @@ void GeneruotiPazymi(vector<studentas>& grupe){
 }
 
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
+    sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
+        return a.pav < b.pav;
+    });
     bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
     bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
 
@@ -156,19 +159,15 @@ void Nuskaitymas(vector<studentas>& grupe){
     getline(f, antraste);
 
     studentas A;
-
     while (f>>A.var>>A.pav){
         A.paz.clear();
-
         for (int i=0; i<5; i++){
             int pazymys;
             f>>pazymys;
             A.paz.push_back(pazymys);
         }
-
         f>>A.egz;
         grupe.push_back(A);
     }
-
     f.close();
 }
