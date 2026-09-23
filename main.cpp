@@ -43,8 +43,9 @@ int main(){
         cout<<"\n=========== MENIU ============\n";
         cout<<"1. Ivesti studenta rankiniu budu\n";
         cout<<"2. Generuoti pazymius\n";
-        cout<<"3. Spausdinti rezultatus\n";
-        cout<<"4. Baigti\n";
+        cout<<"3. Nuskaityti is failo\n";
+        cout<<"4. Spausdinti rezultatus\n";
+        cout<<"5. Baigti\n";
         cout<<"Pasirinkimas (Iveskite skaiciu):";
         cin>>pasirinkimas;
 
@@ -55,6 +56,9 @@ int main(){
             GeneruotiPazymi(grupe);
         }
         else if (pasirinkimas == 3){
+            Nuskaitymas(grupe);
+        }
+        else if (pasirinkimas == 4){
             int kaip;
             cout<<"\nKaip skaiciuoti galutini bala?\n";
             cout << "1. Pagal vidurki\n";
@@ -64,7 +68,7 @@ int main(){
             cin >> kaip;
             Spausdinti(grupe, kaip);
         }
-        else if (pasirinkimas == 4){
+        else if (pasirinkimas == 5){
             cout<<"Baigta.\n";
             break;
         }
@@ -152,15 +156,19 @@ void Nuskaitymas(vector<studentas>& grupe){
     getline(f, antraste);
 
     studentas A;
+
     while (f>>A.var>>A.pav){
         A.paz.clear();
+
         for (int i=0; i<5; i++){
             int pazymys;
             f>>pazymys;
             A.paz.push_back(pazymys);
         }
+
         f>>A.egz;
         grupe.push_back(A);
     }
+
     f.close();
 }
