@@ -182,6 +182,9 @@ void GeneruotiPazymi(vector<studentas>& grupe){
             cin.clear();
             cin.ignore(1000, '\n');
         }
+        else if (kiek<1){
+            cout <<"Klaida! Pazymiu turi buti bent vienas.\n";
+        }
         else{
             break;
         }
