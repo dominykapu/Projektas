@@ -37,12 +37,13 @@ int main(){
         cout<<"2. Generuoti pazymius\n";
         cout<<"3. Nuskaityti is failo\n";
         cout<<"4. Spausdinti rezultatus\n";
-        cout<<"5. Baigti\n";
+        cout<<"5. Generuoti faila\n";
+        cout<<"6. Baigti\n";
         cout<<"Pasirinkimas (Iveskite skaiciu):";
         cin>>pasirinkimas;
 
         if (cin.fail()){
-            cout<<"Klaida! Iveskite skaiciu nuo 1 iki 5.\n";
+            cout<<"Klaida! Iveskite skaiciu nuo 1 iki 6.\n";
             cin.clear();
             cin.ignore(1000, '\n');
             continue;
@@ -77,6 +78,14 @@ int main(){
             }
         }
         else if (pasirinkimas == 5){
+            int kiek;
+            cout<<"Kiek irasu generuoti? ";
+            cin>>kiek;
+            GeneruotiFaila(kiek);
+            cout<<"Failas sukurtas.\n";
+
+        }
+        else if (pasirinkimas == 6){
             cout<<"Baigta.\n";
             break;
         }
