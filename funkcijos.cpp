@@ -22,6 +22,7 @@ using std::fixed;
 using std::vector;
 using std::string;
 using std::ifstream;
+using std::ofstream;
 using std::getline;
 using std::stringstream;
 
@@ -186,6 +187,21 @@ void Nuskaitymas(vector<studentas>& grupe){
         grupe.push_back(A);
     }
     cout << "Nuskaityta studentu: " << grupe.size() << "\n";
+    f.close();
+}
+void GeneruotiFaila(int kiek){
+    string failoPav = "studentai" + std::to_string(kiek) + ".txt";
+    ofstream f(failoPav);
+
+    int nd=5;
+    f<<"Vardas Pavarde";
+    for (int i=1; i<=nd; i++) f<<" ND"<<i;
+    f<<" Egz.\n";
+    for (int i=1; i<=kiek; i++){
+        f<<"Vardas"<<i<<" Pavarde"<<i;
+        for (int j=0; j<nd; j++) f<<" "<<rand()%10+1;
+        f<<" "<<rand()%10+1 <<"\n";
+    }
     f.close();
 }
 
