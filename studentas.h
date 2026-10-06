@@ -9,6 +9,7 @@ struct studentas {
     string var, pav;
     vector<int> paz;
     int egz;
+    double galutinis;
     };
 
 #endif // STUDENTAS_H_INCLUDED
