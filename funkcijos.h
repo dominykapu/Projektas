@@ -12,5 +12,6 @@ void GeneruotiPazymi(vector<studentas>& grupe);
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas);
 void Nuskaitymas(vector<studentas>& grupe);
 void GeneruotiFaila(int kiek);
+void SkirstytiStudentus(vector<studentas>& grupe);
 
 #endif // FUNKCIJOS_H_INCLUDED
