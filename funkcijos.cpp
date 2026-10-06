@@ -95,6 +95,8 @@ void IvestiStudenta(vector<studentas>& grupe){
             break;
         }
     }
+
+    A.galutinis = GalutinisVid(A.paz, A.egz);
     grupe.push_back(A);
 }
 
@@ -124,6 +126,7 @@ void GeneruotiPazymi(vector<studentas>& grupe){
         A.paz.push_back(pazymys);
     }
     A.egz=rand()%10+1;
+    A.galutinis = GalutinisVid(A.paz, A.egz);
     grupe.push_back(A);
 }
 
@@ -184,6 +187,7 @@ void Nuskaitymas(vector<studentas>& grupe){
             }
         A.egz = A.paz.back();
         A.paz.pop_back();
+        A.galutinis = GalutinisVid(A.paz, A.egz);
         grupe.push_back(A);
     }
     cout << "Nuskaityta studentu: " << grupe.size() << "\n";
@@ -203,5 +207,21 @@ void GeneruotiFaila(int kiek){
         f<<" "<<rand()%10+1 <<"\n";
     }
     f.close();
+}
+void SkirstytiStudentus(vector<studentas>& grupe){
+    ofstream vargsiukai("vargsiukai.txt");
+    ofstream galvociai("galvociai.txt");
+
+    for (auto A : grupe){
+        if (A.galutinis<5.0){
+            vargsiukai<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+        }
+        else{
+            galvociai<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+        }
+    }
+    vargsiukai.close();
+    galvociai.close();
+    cout << "Studentai suskirstyti.\n";
 }
 
