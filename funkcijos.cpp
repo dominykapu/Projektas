@@ -132,6 +132,8 @@ void GeneruotiPazymi(vector<studentas>& grupe){
 }
 
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
     if (rikiuoti == 1){
         sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
         return a.pav < b.pav;
@@ -147,6 +149,10 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
         return a.galutinis < b.galutinis;
     });
     }
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+    cout<<"Rikiavimo laikas: "<<laikas.count()<<"\n";
+
     bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
     bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
 
@@ -250,3 +256,4 @@ void SkirstytiStudentus(vector<studentas>& grupe){
     cout<<"Studentai suskirstyti.\n";
     cout<<"Skirstymo laikas: "<<laikas.count()<<"\n";
 }
+
