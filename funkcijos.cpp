@@ -276,6 +276,11 @@ void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
         });
     }
 
+    auto skirstymoPabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> skirstymoLaikas=skirstymoPabaiga-pradzia;
+
+    auto isvedimoPradzia=std::chrono::high_resolution_clock::now();
+
     ofstream vargsiukaiFailas("vargsiukai.txt");
     ofstream galvociaiFailas("galvociai.txt");
 
@@ -288,10 +293,11 @@ void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
     vargsiukaiFailas.close();
     galvociaiFailas.close();
 
-    auto pabaiga=std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> laikas=pabaiga-pradzia;
+    auto isvedimoPabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> isvedimoLaikas=isvedimoPabaiga-isvedimoPradzia;
 
     cout<<"Studentai suskirstyti.\n";
-    cout<<"Skirstymo laikas: "<<laikas.count()<<"\n";
+    cout<<"Skirstymo laikas: "<<skirstymoLaikas.count()<<" \n";
+    cout<<"Isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
 }
 
