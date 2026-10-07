@@ -9,7 +9,7 @@ double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
 void IvestiStudenta(vector<studentas>& grupe);
 void GeneruotiPazymi(vector<studentas>& grupe);
-void Spausdinti(vector<studentas>& grupe, int pasirinkimas);
+void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti);
 void Nuskaitymas(vector<studentas>& grupe);
 void GeneruotiFaila(int kiek);
 void SkirstytiStudentus(vector<studentas>& grupe);
