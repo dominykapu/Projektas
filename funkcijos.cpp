@@ -228,6 +228,8 @@ void GeneruotiFaila(int kiek){
     f.close();
 }
 void SkirstytiStudentus(vector<studentas>& grupe){
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
     ofstream vargsiukai("vargsiukai.txt");
     ofstream galvociai("galvociai.txt");
 
@@ -241,6 +243,10 @@ void SkirstytiStudentus(vector<studentas>& grupe){
     }
     vargsiukai.close();
     galvociai.close();
-    cout << "Studentai suskirstyti.\n";
-}
 
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+
+    cout<<"Studentai suskirstyti.\n";
+    cout<<"Skirstymo laikas: "<<laikas.count()<<"\n";
+}
