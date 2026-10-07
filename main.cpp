@@ -37,6 +37,7 @@ int main(){
         cout<<"2. Generuoti pazymius\n";
         cout<<"3. Nuskaityti is failo\n";
         cout<<"4. Spausdinti rezultatus\n";
+        cout<<"5. Generuoti faila\n";
         cout<<"6. Suskirstyti studentus\n";
         cout<<"7. Baigti\n";
         cout<<"Pasirinkimas (Iveskite skaiciu):";
@@ -59,6 +60,7 @@ int main(){
         }
         else if (pasirinkimas == 4){
             int kaip;
+            int rikiuoti;
             cout <<"\nKaip skaiciuoti galutini bala?\n";
             cout <<"1. Pagal vidurki\n";
             cout <<"2. Pagal mediana\n";
@@ -74,8 +76,20 @@ int main(){
                 cout <<"Klaida! Iveskite 1, 2 arba 3.\n";
             }
             else{
-                Spausdinti(grupe, kaip);
+                cout<<"\nKaip rikiuoti?\n";
+                cout<<"1. Pagal pavarde\n";
+                cout<<"2. Pagal varda\n";
+                cout<<"3. Pagal galutini bala\n";
+                cout<<"Pasirinkimas: ";
+                cin>>rikiuoti;
+
+                if(rikiuoti<1 || rikiuoti>3){
+                    cout<<"Klaida! Iveskite 1, 2 arba 3.\n";
+                }
+            else{
+                Spausdinti(grupe, kaip, rikiuoti);
             }
+        }
         }
         else if (pasirinkimas == 5){
             int kiek;
