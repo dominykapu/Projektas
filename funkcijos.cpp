@@ -240,22 +240,53 @@ void GeneruotiFaila(int kiek){
 
     cout<<"Failo kurimo laikas: "<<laikas.count()<<"\n";
 }
-void SkirstytiStudentus(vector<studentas>& grupe){
+void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
     auto pradzia=std::chrono::high_resolution_clock::now();
 
-    ofstream vargsiukai("vargsiukai.txt");
-    ofstream galvociai("galvociai.txt");
+    vector<studentas> vargsiukai;
+    vector<studentas> galvociai;
 
     for (auto A : grupe){
-        if (A.galutinis<5.0){
-            vargsiukai<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
-        }
-        else{
-            galvociai<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
-        }
+        if (A.galutinis<5.0) vargsiukai.push_back(A);
+        else galvociai.push_back(A);
     }
-    vargsiukai.close();
-    galvociai.close();
+
+    if (rikiuoti==1){
+        sort(vargsiukai.begin(), vargsiukai.end(), [](studentas a, studentas b){
+             return a.pav < b.pav;
+        });
+        sort(galvociai.begin(), galvociai.end(), [](studentas a, studentas b){
+             return a.pav < b.pav;
+        });
+    }
+    if (rikiuoti==2){
+        sort(vargsiukai.begin(), vargsiukai.end(), [](studentas a, studentas b){
+             return a.var < b.var;
+        });
+        sort(galvociai.begin(), galvociai.end(), [](studentas a, studentas b){
+             return a.var < b.var;
+        });
+    }
+    if (rikiuoti==3){
+        sort(vargsiukai.begin(), vargsiukai.end(), [](studentas a, studentas b){
+             return a.galutinis < b.galutinis;
+        });
+        sort(galvociai.begin(), galvociai.end(), [](studentas a, studentas b){
+             return a.galutinis < b.galutinis;
+        });
+    }
+
+    ofstream vargsiukaiFailas("vargsiukai.txt");
+    ofstream galvociaiFailas("galvociai.txt");
+
+    for (auto A : vargsiukai){
+        vargsiukaiFailas<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+    }
+    for (auto A : galvociai){
+        galvociaiFailas<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+    }
+    vargsiukaiFailas.close();
+    galvociaiFailas.close();
 
     auto pabaiga=std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> laikas=pabaiga-pradzia;
