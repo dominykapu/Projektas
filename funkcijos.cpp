@@ -10,6 +10,7 @@
 #include <ctime>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 using std::cin;
 using std::cout;
 using std::left;
@@ -175,6 +176,8 @@ void Nuskaitymas(vector<studentas>& grupe){
     cin >> failoPav;
     ifstream f(failoPav);
 
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
     if (!f){
         cout << "Nepavyko atidaryti failo.\n";
         return;
@@ -202,7 +205,11 @@ void Nuskaitymas(vector<studentas>& grupe){
         A.galutinis = GalutinisVid(A.paz, A.egz);
         grupe.push_back(A);
     }
-    cout << "Nuskaityta studentu: " << grupe.size() << "\n";
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+
+    cout<<"Nuskaityta studentu: "<<grupe.size()<<"\n";
+    cout<<"Nuskaitymo laikas: "<<laikas.count()<<"\n";
     f.close();
 }
 void GeneruotiFaila(int kiek){
