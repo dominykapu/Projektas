@@ -99,7 +99,20 @@ int main(){
             cout<<"Failas sukurtas.\n";
         }
         else if (pasirinkimas == 6){
-                SkirstytiStudentus(grupe);
+            int rikiuoti;
+            cout<<"\nKaip rikiuoti rezultatu failus?\n";
+            cout<<"1. Pagal pavarde\n";
+            cout<<"2. Pagal varda\n";
+            cout<<"3. Pagal galutini bala\n";
+            cout<<"Pasirinkimas: ";
+            cin>>rikiuoti;
+
+            if (rikiuoti<1 || rikiuoti>3){
+                cout<<"Klaida! Iveskite 1, 2 arba 3.\n";
+            }
+            else{
+                SkirstytiStudentus(grupe, rikiuoti);
+            }
         }
         else if (pasirinkimas == 7){
             cout<<"Baigta.\n";
