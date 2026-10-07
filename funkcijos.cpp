@@ -219,6 +219,8 @@ void Nuskaitymas(vector<studentas>& grupe){
     f.close();
 }
 void GeneruotiFaila(int kiek){
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
     string failoPav = "studentai" + std::to_string(kiek) + ".txt";
     ofstream f(failoPav);
 
@@ -232,6 +234,11 @@ void GeneruotiFaila(int kiek){
         f<<" "<<rand()%10+1 <<"\n";
     }
     f.close();
+
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+
+    cout<<"Failo kurimo laikas: "<<laikas.count()<<"\n";
 }
 void SkirstytiStudentus(vector<studentas>& grupe){
     auto pradzia=std::chrono::high_resolution_clock::now();
