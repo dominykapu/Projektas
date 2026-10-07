@@ -130,10 +130,22 @@ void GeneruotiPazymi(vector<studentas>& grupe){
     grupe.push_back(A);
 }
 
-void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
-    sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
+void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
+    if (rikiuoti == 1){
+        sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
         return a.pav < b.pav;
     });
+    }
+    if (rikiuoti == 2){
+        sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
+        return a.var < b.var;
+    });
+    }
+    if (rikiuoti == 3){
+        sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
+        return a.galutinis < b.galutinis;
+    });
+    }
     bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
     bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
 
@@ -152,7 +164,7 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas){
     for (auto B : grupe)
     {
         cout <<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
-        if (RodytiVid == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisVid(B.paz, B.egz);
+        if (RodytiVid == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<B.galutinis;
         if (RodytiMed == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
         cout <<"|\n";
     }
