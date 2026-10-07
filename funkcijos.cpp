@@ -306,7 +306,7 @@ void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
     std::chrono::duration<double> isvedimoLaikas=pabaiga-pradzia;
 
     cout<<"Studentai suskirstyti.\n";
-    cout<<" irasu skirstymo i dvi grupes laikas: "<<skirstymoLaikas.count()<<"\n";
-    cout<<" irasu rikiavimo laikas: "<<rikiavimoLaikas.count()<<"\n";
-    cout<<" irasu isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
+    cout<<" Irasu skirstymo i dvi grupes laikas: "<<skirstymoLaikas.count()<<"\n";
+    cout<<" Irasu rikiavimo laikas: "<<rikiavimoLaikas.count()<<"\n";
+    cout<<" Irasu isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
 }
