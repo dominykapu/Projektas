@@ -241,15 +241,21 @@ void GeneruotiFaila(int kiek){
     cout<<"Failo kurimo laikas: "<<laikas.count()<<"\n";
 }
 void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
-    auto pradzia=std::chrono::high_resolution_clock::now();
 
     vector<studentas> vargsiukai;
     vector<studentas> galvociai;
+    //Skirstymo laiko skaiciavimas
+    auto pradzia=std::chrono::high_resolution_clock::now();
 
     for (auto A : grupe){
         if (A.galutinis<5.0) vargsiukai.push_back(A);
         else galvociai.push_back(A);
     }
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
+
+    //Rusiavimo laiko skaiciavimas
+    pradzia=std::chrono::high_resolution_clock::now();
 
     if (rikiuoti==1){
         sort(vargsiukai.begin(), vargsiukai.end(), [](studentas a, studentas b){
@@ -275,29 +281,32 @@ void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti){
              return a.galutinis < b.galutinis;
         });
     }
+    pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> rikiavimoLaikas=pabaiga-pradzia;
 
-    auto skirstymoPabaiga=std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> skirstymoLaikas=skirstymoPabaiga-pradzia;
-
-    auto isvedimoPradzia=std::chrono::high_resolution_clock::now();
+    //Isvedimo i failus laiko skaiciavimas
+    pradzia=std::chrono::high_resolution_clock::now();
 
     ofstream vargsiukaiFailas("vargsiukai.txt");
     ofstream galvociaiFailas("galvociai.txt");
 
+    vargsiukaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
+    galvociaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
+
     for (auto A : vargsiukai){
-        vargsiukaiFailas<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+        vargsiukaiFailas<<left<<setw(15)<<A.var<<setw(20)<<A.pav<<fixed<<setprecision(2)<<A.galutinis<<"\n";
     }
     for (auto A : galvociai){
-        galvociaiFailas<<A.var<<" "<<A.pav<<" "<<A.galutinis<<"\n";
+        galvociaiFailas<<left<<setw(15)<<A.var<<setw(20)<<A.pav<<fixed<<setprecision(2)<<A.galutinis<<"\n";
     }
     vargsiukaiFailas.close();
     galvociaiFailas.close();
 
-    auto isvedimoPabaiga=std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> isvedimoLaikas=isvedimoPabaiga-isvedimoPradzia;
+    pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> isvedimoLaikas=pabaiga-pradzia;
 
     cout<<"Studentai suskirstyti.\n";
-    cout<<"Skirstymo laikas: "<<skirstymoLaikas.count()<<" \n";
-    cout<<"Isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
+    cout<<" irasu skirstymo i dvi grupes laikas: "<<skirstymoLaikas.count()<<"\n";
+    cout<<" irasu rikiavimo laikas: "<<rikiavimoLaikas.count()<<"\n";
+    cout<<" irasu isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
 }
-
