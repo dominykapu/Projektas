@@ -25,7 +25,7 @@ Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš fail
 - Abi grupės rūšiuojamos pagal vartotojo pasirinktą parametrą (pavardė, vardas arba galutinis balas) ir išvedamos į du naujus failus;
 - Pridėtas kiekvieno žingsnio laiko matavimas (failo kūrimas, nuskaitymas, skirstymas, rūšiavimas, išvedimas).
 
-## Testavimo rezultatai (3 testų vidurkis)
+## Testavimo rezultatai (3 testų vidurkis, sekundėmis)
 
 ### Failų generavimas ir duomenų nuskaitymas
 
