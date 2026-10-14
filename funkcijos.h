@@ -5,16 +5,23 @@
 #include <list>
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <chrono>
 #include "studentas.h"
 using std::vector;
 using std::list;
 using std::cin;
 using std::cout;
+using std::string;
+using std::ifstream;
+using std::getline;
+using std::stringstream;
 
 double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
 void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti);
-void Nuskaitymas(vector<studentas>& grupe);
 void GeneruotiFaila(int kiek);
 void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti);
 
@@ -102,5 +109,49 @@ void GeneruotiPazymi(T& grupe){
     A.galutinis = GalutinisVid(A.paz, A.egz);
     grupe.push_back(A);
 }
+template <class T>
+void Nuskaitymas(T& grupe){
+    string failoPav;
+    cout << "Iveskite failo pavadinima: ";
+    cin >> failoPav;
+    ifstream f(failoPav);
 
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
+    if (!f){
+        cout << "Nepavyko atidaryti failo.\n";
+        return;
+    }
+    grupe.clear();
+
+    string antraste;
+    getline(f, antraste);
+
+    string eilute;
+    while (getline(f, eilute)){
+        stringstream ss(eilute);
+        studentas A;
+        ss >> A.var;
+        ss >> A.pav;
+
+        int pazymys;
+        while (ss >> pazymys){
+            A.paz.push_back(pazymys);
+        }
+        if (!ss.eof() || A.paz.empty()){ //Jei yra raide ciklas sustoja, nes raide negali buti ideta i pazymys
+            cout << "Klaida faile, eilute praleista: " << eilute << "\n";
+            continue;
+            }
+        A.egz = A.paz.back();
+        A.paz.pop_back();
+        A.galutinis = GalutinisVid(A.paz, A.egz);
+        grupe.push_back(A);
+    }
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+
+    cout<<"Nuskaityta studentu: "<<grupe.size()<<"\n";
+    cout<<"Nuskaitymo laikas: "<<laikas.count()<<"\n";
+    f.close();
+}
 #endif // FUNKCIJOS_H_INCLUDED
