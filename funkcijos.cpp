@@ -94,50 +94,6 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
         cout <<"|\n";
     }
 }
-void Nuskaitymas(vector<studentas>& grupe){
-    string failoPav;
-    cout << "Iveskite failo pavadinima: ";
-    cin >> failoPav;
-    ifstream f(failoPav);
-
-    auto pradzia=std::chrono::high_resolution_clock::now();
-
-    if (!f){
-        cout << "Nepavyko atidaryti failo.\n";
-        return;
-    }
-    grupe.clear();
-
-    string antraste;
-    getline(f, antraste);
-
-    string eilute;
-    while (getline(f, eilute)){
-        stringstream ss(eilute);
-        studentas A;
-        ss >> A.var;
-        ss >> A.pav;
-
-        int pazymys;
-        while (ss >> pazymys){
-            A.paz.push_back(pazymys);
-        }
-        if (!ss.eof() || A.paz.empty()){ //Jei yra raide ciklas sustoja, nes raide negali buti ideta i pazymys
-            cout << "Klaida faile, eilute praleista: " << eilute << "\n";
-            continue;
-            }
-        A.egz = A.paz.back();
-        A.paz.pop_back();
-        A.galutinis = GalutinisVid(A.paz, A.egz);
-        grupe.push_back(A);
-    }
-    auto pabaiga=std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> laikas=pabaiga-pradzia;
-
-    cout<<"Nuskaityta studentu: "<<grupe.size()<<"\n";
-    cout<<"Nuskaitymo laikas: "<<laikas.count()<<"\n";
-    f.close();
-}
 void GeneruotiFaila(int kiek){
     auto pradzia=std::chrono::high_resolution_clock::now();
 
