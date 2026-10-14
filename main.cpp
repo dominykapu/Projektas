@@ -37,11 +37,11 @@ int main(){
 
     cout<<"\n========== KONTEINERIS ===========\n";
     cout<<"1. std::vector\n";
-    cout<<"1. std::list\n";
+    cout<<"2. std::list\n";
     cout<<"Pasirinkimas: ";
     cin>>konteineris;
 
-    if (cin.fail()){
+    if (cin.fail() || konteineris<1 || konteineris>2){
             cout<<"Klaida! Iveskite 1 arba 2.\n";
             cin.clear();
             cin.ignore(1000, '\n');
@@ -68,10 +68,20 @@ int main(){
             continue;
         }
         if (pasirinkimas == 1){
-            IvestiStudenta(grupe);
+            if (konteineris == 1){
+                IvestiStudenta(grupe);
+            }
+            else{
+                IvestiStudenta(grupeList);
+            }
         }
         else if (pasirinkimas == 2){
-            GeneruotiPazymi(grupe);
+            if (konteineris == 1){
+                GeneruotiPazymi(grupe);
+            }
+            else{
+                GeneruotiPazymi(grupeList);
+            }
         }
         else if (pasirinkimas == 3){
             Nuskaitymas(grupe);
