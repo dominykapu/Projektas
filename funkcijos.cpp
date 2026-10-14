@@ -11,6 +11,7 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
+#include <list>
 using std::cin;
 using std::cout;
 using std::left;
@@ -26,6 +27,7 @@ using std::ifstream;
 using std::ofstream;
 using std::getline;
 using std::stringstream;
+using std::list;
 
 double GalutinisVid(vector<int> paz, int egz){
     if (paz.empty()){ //Kad nebutu dalybos is nulio
@@ -188,6 +190,8 @@ void Nuskaitymas(vector<studentas>& grupe){
         cout << "Nepavyko atidaryti failo.\n";
         return;
     }
+    grupe.clear();
+
     string antraste;
     getline(f, antraste);
 
