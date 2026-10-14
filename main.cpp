@@ -84,7 +84,12 @@ int main(){
             }
         }
         else if (pasirinkimas == 3){
-            Nuskaitymas(grupe);
+            if (konteineris == 1){
+                Nuskaitymas(grupe);
+            }
+            else{
+                Nuskaitymas(grupeList);
+            }
         }
         else if (pasirinkimas == 4){
             int kaip;
