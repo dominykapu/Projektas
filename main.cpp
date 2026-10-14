@@ -8,6 +8,7 @@
 #include <ctime>
 #include <fstream>
 #include <sstream>
+#include <list>
 
 #include "funkcijos.h"
 
@@ -25,10 +26,12 @@ using std::string;
 using std::ifstream;
 using std::getline;
 using std::stringstream;
+using std::list;
 
 int main(){
     srand(time(0));
     vector<studentas> grupe;
+    list<studentas> grupeList;
 
     while (true){
         int pasirinkimas;
@@ -113,6 +116,7 @@ int main(){
             else{
                 SkirstytiStudentus(grupe, rikiuoti);
             }
+
         }
         else if (pasirinkimas == 7){
             cout<<"Baigta.\n";
