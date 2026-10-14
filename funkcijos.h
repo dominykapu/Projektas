@@ -2,8 +2,10 @@
 #define FUNKCIJOS_H_INCLUDED
 
 #include <vector>
+#include <list>
 #include "studentas.h"
 using std::vector;
+using std::list;
 
 double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
