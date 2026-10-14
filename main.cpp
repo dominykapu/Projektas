@@ -33,6 +33,21 @@ int main(){
     vector<studentas> grupe;
     list<studentas> grupeList;
 
+    int konteineris;
+
+    cout<<"\n========== KONTEINERIS ===========\n";
+    cout<<"1. std::vector\n";
+    cout<<"1. std::list\n";
+    cout<<"Pasirinkimas: ";
+    cin>>konteineris;
+
+    if (cin.fail()){
+            cout<<"Klaida! Iveskite 1 arba 2.\n";
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout<<"Pasirinkimas: ";
+            cin>>konteineris;
+        }
     while (true){
         int pasirinkimas;
         cout<<"\n=========== MENIU ============\n";
