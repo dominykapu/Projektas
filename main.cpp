@@ -150,10 +150,10 @@ int main(){
             }
             else{
                 if(konteineris == 1){
-                    SkirstytiStudentus(grupe, rikiuoti);
+                    SkirstytiStudentus(grupe, rikiuoti, "vector");
                 }
                 else{
-                    SkirstytiStudentus(grupeList, rikiuoti);
+                    SkirstytiStudentus(grupeList, rikiuoti, "list");
                 }
             }
         }
