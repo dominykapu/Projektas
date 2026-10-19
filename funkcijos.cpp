@@ -49,9 +49,7 @@ double GalutinisMed(vector<int> paz, int egz){
     return 0.4 * med + 0.6 * egz;
 }
 
-void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
-    auto pradzia=std::chrono::high_resolution_clock::now();
-
+void Rikiuoti(vector<studentas>& grupe, int rikiuoti){
     if (rikiuoti == 1){
         sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
         return a.pav < b.pav;
@@ -67,31 +65,23 @@ void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti){
         return a.galutinis < b.galutinis;
     });
     }
-    auto pabaiga=std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> laikas=pabaiga-pradzia;
-    cout<<"Rikiavimo laikas: "<<laikas.count()<<"\n";
+}
 
-    bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
-    bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
-
-    cout <<"\nStudento duomenys: \n";
-    cout <<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
-    if (RodytiVid == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Vid.)";
-    if (RodytiMed == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Med.)";
-    cout <<"|\n";
-
-    int br=15+20+1; // Bruksniai
-    if (RodytiVid == true) br+=17+1;
-    if (RodytiMed == true) br+=17+1;
-
-    cout <<"|";for (int i=0; i<br; i++) cout<<"-"; cout<<"|\n";
-
-    for (auto B : grupe)
-    {
-        cout <<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
-        if (RodytiVid == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<B.galutinis;
-        if (RodytiMed == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
-        cout <<"|\n";
+void Rikiuoti(list<studentas>& grupe, int rikiuoti){
+    if (rikiuoti == 1){
+        grupe.sort([](studentas a, studentas b){
+        return a.pav < b.pav;
+    });
+    }
+    if (rikiuoti == 2){
+        grupe.sort([](studentas a, studentas b){
+        return a.var < b.var;
+    });
+    }
+    if (rikiuoti == 3){
+        grupe.sort([](studentas a, studentas b){
+        return a.galutinis < b.galutinis;
+    });
     }
 }
 void GeneruotiFaila(int kiek){
