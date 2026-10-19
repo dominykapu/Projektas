@@ -149,9 +149,13 @@ int main(){
                 cout<<"Klaida! Iveskite 1, 2 arba 3.\n";
             }
             else{
-                SkirstytiStudentus(grupe, rikiuoti);
+                if(konteineris == 1){
+                    SkirstytiStudentus(grupe, rikiuoti);
+                }
+                else{
+                    SkirstytiStudentus(grupeList, rikiuoti);
+                }
             }
-
         }
         else if (pasirinkimas == 7){
             cout<<"Baigta.\n";
