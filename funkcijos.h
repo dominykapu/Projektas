@@ -17,6 +17,7 @@ using std::cin;
 using std::cout;
 using std::string;
 using std::ifstream;
+using std::ofstream;
 using std::getline;
 using std::stringstream;
 using std::left;
@@ -30,8 +31,6 @@ double GalutinisMed(vector<int> paz, int egz);
 void Rikiuoti(vector<studentas>& grupe, int rikiuoti);
 void Rikiuoti(list<studentas>& grupe, int rikiuoti);
 void GeneruotiFaila(int kiek);
-void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti);
-
 
 template <class T>
 void IvestiStudenta(T& grupe){
@@ -195,4 +194,55 @@ void Spausdinti(T& grupe, int pasirinkimas, int rikiuoti){
         cout <<"|\n";
     }
 }
+template <class T>
+void SkirstytiStudentus(T& grupe, int rikiuoti){
+
+    T vargsiukai;
+    T galvociai;
+    //Skirstymo laiko skaiciavimas
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
+    for (auto A : grupe){
+        if (A.galutinis<5.0) vargsiukai.push_back(A);
+        else galvociai.push_back(A);
+    }
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
+
+    //Rusiavimo laiko skaiciavimas
+    pradzia=std::chrono::high_resolution_clock::now();
+
+    Rikiuoti(vargsiukai, rikiuoti);
+    Rikiuoti(galvociai, rikiuoti);
+
+    pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> rikiavimoLaikas=pabaiga-pradzia;
+
+    //Isvedimo i failus laiko skaiciavimas
+    pradzia=std::chrono::high_resolution_clock::now();
+
+    ofstream vargsiukaiFailas("vargsiukai.txt");
+    ofstream galvociaiFailas("galvociai.txt");
+
+    vargsiukaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
+    galvociaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
+
+    for (auto A : vargsiukai){
+        vargsiukaiFailas<<left<<setw(15)<<A.var<<setw(20)<<A.pav<<fixed<<setprecision(2)<<A.galutinis<<"\n";
+    }
+    for (auto A : galvociai){
+        galvociaiFailas<<left<<setw(15)<<A.var<<setw(20)<<A.pav<<fixed<<setprecision(2)<<A.galutinis<<"\n";
+    }
+    vargsiukaiFailas.close();
+    galvociaiFailas.close();
+
+    pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> isvedimoLaikas=pabaiga-pradzia;
+
+    cout<<"Studentai suskirstyti.\n";
+    cout<<" Irasu skirstymo i dvi grupes laikas: "<<skirstymoLaikas.count()<<"\n";
+    cout<<" Irasu rikiavimo laikas: "<<rikiavimoLaikas.count()<<"\n";
+    cout<<" Irasu isvedimo i failus laikas: "<<isvedimoLaikas.count()<<"\n";
+}
+
 #endif // FUNKCIJOS_H_INCLUDED
