@@ -120,7 +120,12 @@ int main(){
                     cout<<"Klaida! Iveskite 1, 2 arba 3.\n";
                 }
             else{
-                Spausdinti(grupe, kaip, rikiuoti);
+                if (konteineris == 1){
+                    Spausdinti(grupe, kaip, rikiuoti);
+                }
+                else{
+                    Spausdinti(grupeList, kaip, rikiuoti);
+                }
             }
         }
         }
