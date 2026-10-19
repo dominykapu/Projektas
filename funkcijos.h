@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
@@ -18,12 +19,19 @@ using std::string;
 using std::ifstream;
 using std::getline;
 using std::stringstream;
+using std::left;
+using std::right;
+using std::setw;
+using std::fixed;
+using std::setprecision;
 
 double GalutinisVid(vector<int> paz, int egz);
 double GalutinisMed(vector<int> paz, int egz);
-void Spausdinti(vector<studentas>& grupe, int pasirinkimas, int rikiuoti);
+void Rikiuoti(vector<studentas>& grupe, int rikiuoti);
+void Rikiuoti(list<studentas>& grupe, int rikiuoti);
 void GeneruotiFaila(int kiek);
 void SkirstytiStudentus(vector<studentas>& grupe, int rikiuoti);
+
 
 template <class T>
 void IvestiStudenta(T& grupe){
@@ -153,5 +161,38 @@ void Nuskaitymas(T& grupe){
     cout<<"Nuskaityta studentu: "<<grupe.size()<<"\n";
     cout<<"Nuskaitymo laikas: "<<laikas.count()<<"\n";
     f.close();
+}
+template <class T>
+void Spausdinti(T& grupe, int pasirinkimas, int rikiuoti){
+    auto pradzia=std::chrono::high_resolution_clock::now();
+
+    Rikiuoti(grupe, rikiuoti);
+
+    auto pabaiga=std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas=pabaiga-pradzia;
+    cout<<"Rikiavimo laikas: "<<laikas.count()<<"\n";
+
+    bool RodytiVid = (pasirinkimas == 1 || pasirinkimas == 3);
+    bool RodytiMed = (pasirinkimas == 2 || pasirinkimas == 3);
+
+    cout <<"\nStudento duomenys: \n";
+    cout <<"|"<<left<<setw(15)<<"Vardas"<<"|"<<left<<setw(20)<<"Pavarde";
+    if (RodytiVid == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Vid.)";
+    if (RodytiMed == true) cout<<"|"<<right<<setw(17)<<"Galutinis (Med.)";
+    cout <<"|\n";
+
+    int br=15+20+1; // Bruksniai
+    if (RodytiVid == true) br+=17+1;
+    if (RodytiMed == true) br+=17+1;
+
+    cout <<"|";for (int i=0; i<br; i++) cout<<"-"; cout<<"|\n";
+
+    for (auto B : grupe)
+    {
+        cout <<"|"<<left<<setw(15)<<B.var<<"|"<<left<<setw(20)<<B.pav;
+        if (RodytiVid == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<B.galutinis;
+        if (RodytiMed == true) cout <<"|"<<right<<setw(17)<<fixed<<setprecision(2)<<GalutinisMed(B.paz, B.egz);
+        cout <<"|\n";
+    }
 }
 #endif // FUNKCIJOS_H_INCLUDED
