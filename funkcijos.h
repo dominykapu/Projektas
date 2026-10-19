@@ -85,6 +85,9 @@ void IvestiStudenta(T& grupe){
 
     A.galutinis = GalutinisVid(A.paz, A.egz);
     grupe.push_back(A);
+
+    cout<<"Studentas: "<<A.var<<" "<<A.pav<<"\n";
+    cout<<"Atminties adresas: "<<&grupe.back()<<"\n";
 }
 template <class T>
 void GeneruotiPazymi(T& grupe){
