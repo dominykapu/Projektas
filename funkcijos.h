@@ -195,7 +195,7 @@ void Spausdinti(T& grupe, int pasirinkimas, int rikiuoti){
     }
 }
 template <class T>
-void SkirstytiStudentus(T& grupe, int rikiuoti){
+void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris){
 
     T vargsiukai;
     T galvociai;
@@ -221,8 +221,11 @@ void SkirstytiStudentus(T& grupe, int rikiuoti){
     //Isvedimo i failus laiko skaiciavimas
     pradzia=std::chrono::high_resolution_clock::now();
 
-    ofstream vargsiukaiFailas("vargsiukai.txt");
-    ofstream galvociaiFailas("galvociai.txt");
+    string vargsiukaiPav="vargsiukai_"+konteineris+".txt";
+    string galvociaiPav="galvociai_"+konteineris+".txt";
+
+    ofstream vargsiukaiFailas(vargsiukaiPav);
+    ofstream galvociaiFailas(galvociaiPav);
 
     vargsiukaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
     galvociaiFailas<<left<<setw(15)<<"Vardas"<<setw(20)<<"Pavarde"<<"Galutinis\n";
