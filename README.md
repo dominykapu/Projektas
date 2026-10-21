@@ -3,21 +3,19 @@
 Programa skaičiuoja studentų galutinį balą (0.4 * namų darbų vidurkis arba mediana + 0.6 * egzaminas).
 Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš failo.
 
-## Versijos:
-
-### v.pradinė:
+## v.pradinė:
 
 - įvedimas ranka;
 - vidurkis ir mediana;
 - generavimas;
 - meniu.
 
-### v0.1:
+## v0.1:
 
 - pridėtas nuskaitymas iš failo;
 - įvesties tikrinimas.
 
-### v0.2:
+## v0.2:
 
 - kodas išskaidytas į .h ir .cpp failus;
 - pridėtas atsitiktinių studentų failų generavimas;
@@ -25,16 +23,16 @@ Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš fail
 - Abi grupės rūšiuojamos pagal vartotojo pasirinktą parametrą (pavardė, vardas arba galutinis balas) ir išvedamos į du naujus failus;
 - Pridėtas kiekvieno žingsnio laiko matavimas (failo kūrimas, nuskaitymas, skirstymas, rūšiavimas, išvedimas).
 
-## Testavimo rezultatai (3 testų vidurkis, sekundėmis)
+### Testavimo rezultatai (3 testų vidurkis, sekundėmis)
 
-### Failų generavimas ir duomenų nuskaitymas
+#### Failų generavimas ir duomenų nuskaitymas
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
 | Failų generavimas | 0,002 | 0,010 | 0,048 | 0,461 | 4,270 |
 | Duomenų nuskaitymas | 0,003 | 0,024 | 0,128 | 1,225 | 12,102 |
 
-### Studentų rūšiavimas į dvi grupes/kategorijas
+#### Studentų rūšiavimas į dvi grupes/kategorijas
 
 | Rūšiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
@@ -42,7 +40,7 @@ Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš fail
 | Pagal vardą | 0,0008 | 0,0069 | 0,0509 | 0,4382 | 4,3159 |
 | Pagal galutinį balą | 0,0008 | 0,0065 | 0,0486 | 0,4357 | 4,3792 |
 
-### Surūšiuotų studentų išvedimas į du naujus failus
+#### Surūšiuotų studentų išvedimas į du naujus failus
 
 | Rūšiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
@@ -54,4 +52,84 @@ Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš fail
 
 - Visų žingsnių laikas auga maždaug tiesiškai: padidinus įrašų skaičių 10 kartų, laikas taip pat padidėja apie 10 kartų.
 - Rūšiavimo parametras (pavardė, vardas ar galutinis balas) laikui įtakos turi nedaug: skirtumai nežymūs, ypač mažesniems failams.
+
+## v0.3:
+
+- programa veikia su dviem konteineriais: `std::vector` ir `std::list` (pasirenkama paleidus programą);
+- funkcijos perrašytos kaip šablonai, kad tiktų abiem konteineriams;
+- rankinio įvedimo metu išvedamas studento objekto adresas atmintyje;
+
+### Testavimo sistema
+
+- CPU: Intel Core Ultra 7 155H, branduoliai: 16
+- RAM: 32 GB, 7467 MT/s
+- Diskas: SSD (NVMe), C:
+- OS: Windows 11 64-bit
+
+### Testavimo rezultatai (3 testų vidurkis, sekundėmis)
+
+Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteineriams.
+
+### std::vector
+
+#### Duomenų nuskaitymas
+
+| Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Nuskaitymas | 0,003 |  0,035 |  0,232 | 1,967 | 18,517 |
+
+#### Studentų skirstymas į dvi grupes
+
+| Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Skirstymas | 0,0008 | 0,005 | 0,049 | 0,422 | 4,316 |
+
+#### Rikiavimas
+
+| Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Pagal pavardę | 0,006 | 0,078 |  0,965 | 13,643 | 159,889 |
+| Pagal vardą | 0,006 | 0,079 | 1,01 | 13,693 | 142,82 |
+| Pagal galutinį balą | 0,004 | 0,046 | 0,534 | 7,336 | 100,335 |
+ 
+#### Išvedimas į du naujus failus
+
+| Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Pagal pavardę | 0,003 | 0,017 | 0,124 | 1,513 | 14,345 |
+| Pagal vardą | 0,003 | 0,015 | 0,135 | 1,410 | 14,8561 |
+| Pagal galutinį balą | 0,003 | 0,016 | 0,156 | 1,576 | 17,408 |
+
+### std::list
+
+**Duomenų nuskaitymas**
+
+| Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Nuskaitymas | 0,003 | 0,025 | 0,214 | 1,933 | 19,761 |
+
+**Studentų skirstymas į dvi grupes**
+
+| Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Skirstymas | 0,0008 | 0,006 | 0,052 | 0,456 | 4,762 |
+
+**Rikiavimas**
+
+| Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Pagal pavardę | 0,002 | 0,026 | 0,279 | 3,911 | 38,341 |
+| Pagal vardą | 0,002 | 0,027 | 0,281 | 3,778 | 38,672 |
+| Pagal galutinį balą | 0,003 | 0,035 | 0,453 | 6,240 | 81,825 |
+
+**Išvedimas į du naujus failus**
+
+| Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|---|
+| Pagal pavardę | 0,004 | 0,018 | 0,149 | 1,622 | 15,607 |
+| Pagal vardą | 0,003 | 0,019 | 0,148 | 1,653 | 16,091 |
+| Pagal galutinį balą | 0,003 | 0,017 | 0,238 | 1,836 | 18,711 |
+
+### Atminties adresai
+
 
