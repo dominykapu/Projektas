@@ -102,19 +102,19 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 
 ### std::list
 
-**Duomenų nuskaitymas**
+#### Duomenų nuskaitymas
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
 | Nuskaitymas | 0,003 | 0,025 | 0,214 | 1,933 | 19,761 |
 
-**Studentų skirstymas į dvi grupes**
+#### Studentų skirstymas į dvi grupes
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
 | Skirstymas | 0,0008 | 0,006 | 0,052 | 0,456 | 4,762 |
 
-**Rikiavimas**
+#### Rikiavimas
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
@@ -122,7 +122,7 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 | Pagal vardą | 0,002 | 0,027 | 0,281 | 3,778 | 38,672 |
 | Pagal galutinį balą | 0,003 | 0,035 | 0,453 | 6,240 | 81,825 |
 
-**Išvedimas į du naujus failus**
+#### Išvedimas į du naujus failus
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
@@ -131,5 +131,23 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 | Pagal galutinį balą | 0,003 | 0,017 | 0,238 | 1,836 | 18,711 |
 
 ### Atminties adresai
+**std::vector**
 
+<img width="306" height="149" alt="Screenshot vector" src="https://github.com/user-attachments/assets/54cfc708-652b-4be1-8200-4aa05548ba13" />
+
+3-io ir 4-o studento adresai artimi, vadinasi, vector elementai guli gretimai.
+
+**std::list**
+
+<img width="306" height="149" alt="Screenshot list" src="https://github.com/user-attachments/assets/cf474e47-6234-4864-9360-ba03870b5911" />
+
+List adresų skirtumai nepastovūs.
+
+### Išvados
+
+- **Nuskaitymas:** vector ir list laikai beveik vienodi (10 000 000 įrašų: 18,5 s ir 19,8 s).
+- **Skirstymas:** abiejų konteinerių laikai panašūs (10 000 000 įrašų: 4,3 s ir 4,8 s).
+- **Rikiavimas:** pagal pavardę ir vardą list daug greitesnis (10 000 000 įrašų: list apie 38 s, o vector 143-160 s). Pagal galutinį balą skirtumas mažesnis (list 82 s, vector 100 s).
+- **Išvedimas į failus:** vector ir list laikai panašūs, nes tai nepriklauso nuo konteinerio.
+- Atminties adresai parodo, kad vector elementai gretimi, o list išsibarstę.
 
