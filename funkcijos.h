@@ -212,6 +212,19 @@ void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategi
         else galvociai.push_back(A);
         }
     }
+    //2 strategija
+    else if (strategija==2){
+        for (auto it=grupe.begin(); it!=grupe.end();){
+            if (it->galutinis<0.5){
+                vargsiukai.push_back(*it);
+                it=grupe.erase(it);
+            }
+            else{
+                ++it;
+            }
+        }
+        galvociai=grupe; //like studentai galvociai
+    }
     auto pabaiga=std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
 
