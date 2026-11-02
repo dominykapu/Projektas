@@ -151,3 +151,25 @@ List adresų skirtumai nepastovūs.
 - **Išvedimas į failus:** vector ir list laikai panašūs, nes tai nepriklauso nuo konteinerio.
 - Atminties adresai parodo, kad vector elementai gretimi, o list išsibarstę.
 
+## v1.0:
+
+- Pridėtos 3 studentų skirstymo į dvi kategorijas (vargšiukai ir galvočiai) strategijos, veikiančios su std::vector ir std::list.
+
+### Testavimo rezultatai (3 testų vidurkis, sekundėmis)
+
+Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteineriams.
+
+### std::vector
+| Veiksmas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|  
+| **Skirstymas (1 strategija)** | 0,0008 | 0,006 | 0,049 | 0,43 | 3,99 |
+| **Skirstymas (2 strategija)** | 0,0002 | 0,001 | 113,8 | ... | ... |
+| **Skirstymas (3 strategija)** | 0,0002 | 0,001 | 0,012 | 0,36 | 1,06 |
+
+### std::list
+| Veiksmas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
+|---|---|---|---|---|  
+| **Skirstymas (1 strategija)** | 1e-06 | 0,005 | 0,056 |  0,45 | 4,1 |
+| **Skirstymas (2 strategija)** | 2,7e-06 | 0,002 | 0,026 | 0,21 | 2,1 |
+| **Skirstymas (3 strategija)** | 3e-06 | 0,002 | 0,026 | 0,19 | 1,9 |
+
