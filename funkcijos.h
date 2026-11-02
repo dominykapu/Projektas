@@ -32,6 +32,8 @@ double GalutinisMed(vector<int> paz, int egz);
 void Rikiuoti(vector<studentas>& grupe, int rikiuoti);
 void Rikiuoti(list<studentas>& grupe, int rikiuoti);
 void GeneruotiFaila(int kiek);
+void Skirstyti3Strat(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai);
+void Skirstyti3Strat(list<studentas>& grupe, list<studentas>& vargsiukai, list<studentas>& galvociai);
 
 template <class T>
 void IvestiStudenta(T& grupe){
@@ -216,7 +218,7 @@ void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategi
     //2 strategija
     else if (strategija==2){
         for (auto it=grupe.begin(); it!=grupe.end();){
-            if (it->galutinis<0.5){
+            if (it->galutinis<5.0){
                 vargsiukai.push_back(*it);
                 it=grupe.erase(it);
             }
@@ -228,24 +230,7 @@ void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategi
     }
     //3 strategija
     else if (strategija==3){
-        if (konteineris=="vector"){
-            auto it=std::stable_partition(grupe.begin(), grupe.end(), [](const studentas& s) {return s.galutinis>=5.0; });
-            vargsiukai.assign(it, grupe.end());
-            grupe.erase(it, grupe.end());
-            galvociai=grupe;
-        }
-        else if (konteineris=="list"){
-            auto it=grupe.begin();
-            while (it!=grupe.end()){
-                if (it->galutinis<5.0){
-                    vargsiukai.splice(vargsiukai.end(), grupe, it++);
-                }
-                else{
-                    ++it;
-                }
-            }
-            galvociai=grupe;
-        }
+        Skirstyti3Strat(grupe, vargsiukai, galvociai);
     }
     auto pabaiga=std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
