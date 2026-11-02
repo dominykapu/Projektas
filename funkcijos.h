@@ -198,7 +198,7 @@ void Spausdinti(T& grupe, int pasirinkimas, int rikiuoti){
     }
 }
 template <class T>
-void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris){
+void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategija){
 
     T vargsiukai;
     T galvociai;
