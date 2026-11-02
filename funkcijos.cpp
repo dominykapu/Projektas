@@ -48,7 +48,24 @@ double GalutinisMed(vector<int> paz, int egz){
     else med = paz[paz_sk/2];
     return 0.4 * med + 0.6 * egz;
 }
-
+void Skirstyti3Strat(vector<studentas>& grupe, vector<studentas>& vargsiukai, vector<studentas>& galvociai){
+    auto it=std::stable_partition(grupe.begin(), grupe.end(), [](const studentas& s) {return s.galutinis>=5.0; });
+            vargsiukai.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+            galvociai=grupe;
+}
+void Skirstyti3Strat(list<studentas>& grupe, list<studentas>& vargsiukai, list<studentas>& galvociai){
+    auto it=grupe.begin();
+            while (it!=grupe.end()){
+                if (it->galutinis<5.0){
+                    vargsiukai.splice(vargsiukai.end(), grupe, it++);
+                }
+                else{
+                    ++it;
+                }
+            }
+            galvociai=grupe;
+}
 void Rikiuoti(vector<studentas>& grupe, int rikiuoti){
     if (rikiuoti == 1){
         sort(grupe.begin(), grupe.end(), [](studentas a, studentas b){
