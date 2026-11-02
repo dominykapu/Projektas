@@ -10,6 +10,7 @@
 #include <sstream>
 #include <string>
 #include <chrono>
+#include <algorithm>
 #include "studentas.h"
 using std::vector;
 using std::list;
@@ -224,6 +225,15 @@ void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategi
             }
         }
         galvociai=grupe; //like studentai galvociai
+    }
+    //3 strategija
+    else if (strategija==3){
+        if (konteineris=="vector"){
+            auto it=std::stable_partition(grupe.begin(), grupe.end(), [](const studentas& s) {return s.galutinis>=5.0; });
+            vargsiukai.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+            galvociai=grupe;
+        }
     }
     auto pabaiga=std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
