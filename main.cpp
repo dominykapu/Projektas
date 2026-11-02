@@ -138,6 +138,18 @@ int main(){
         }
         else if (pasirinkimas == 6){
             int rikiuoti;
+            int strategija;
+            cout<<"\nPasirinkite skirstymo strategija (1-3):\n";
+            cout<<"1. Du nauji konteineriai\n";
+            cout<<"2. Vienas naujas konteineris\n";
+            cout<<"3. Optimizuotas skirstymas\n";
+            cout<<"Pasirinkimas: ";
+            cin>>strategija;
+
+            if (strategija<1 || strategija>3){
+                cout<<"Klaida! Iveskite 1, 2 arba 3.\n";
+            }
+
             cout<<"\nKaip rikiuoti rezultatu failus?\n";
             cout<<"1. Pagal pavarde\n";
             cout<<"2. Pagal varda\n";
@@ -150,10 +162,10 @@ int main(){
             }
             else{
                 if(konteineris == 1){
-                    SkirstytiStudentus(grupe, rikiuoti, "vector");
+                    SkirstytiStudentus(grupe, rikiuoti, "vector", strategija);
                 }
                 else{
-                    SkirstytiStudentus(grupeList, rikiuoti, "list");
+                    SkirstytiStudentus(grupeList, rikiuoti, "list", strategija);
                 }
             }
         }
