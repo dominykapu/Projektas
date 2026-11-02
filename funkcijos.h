@@ -205,9 +205,12 @@ void SkirstytiStudentus(T& grupe, int rikiuoti, string konteineris, int strategi
     //Skirstymo laiko skaiciavimas
     auto pradzia=std::chrono::high_resolution_clock::now();
 
-    for (auto A : grupe){
+    //1 strategija
+    if (strategija==1){
+        for (auto A : grupe){
         if (A.galutinis<5.0) vargsiukai.push_back(A);
         else galvociai.push_back(A);
+        }
     }
     auto pabaiga=std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> skirstymoLaikas=pabaiga-pradzia;
