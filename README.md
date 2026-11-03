@@ -29,24 +29,24 @@ Duomenis galima įvesti ranka, sugeneruoti atsitiktinai arba nuskaityti iš fail
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Failų generavimas | 0,002 | 0,010 | 0,048 | 0,461 | 4,270 |
-| Duomenų nuskaitymas | 0,003 | 0,024 | 0,128 | 1,225 | 12,102 |
+| **Failų generavimas** | 0,002 | 0,010 | 0,048 | 0,461 | 4,270 |
+| **Duomenų nuskaitymas** | 0,003 | 0,024 | 0,128 | 1,225 | 12,102 |
 
 #### Studentų rūšiavimas į dvi grupes/kategorijas
 
 | Rūšiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,0008 | 0,0068 | 0,0495 | 0,4265 | 4,0450 |
-| Pagal vardą | 0,0008 | 0,0069 | 0,0509 | 0,4382 | 4,3159 |
-| Pagal galutinį balą | 0,0008 | 0,0065 | 0,0486 | 0,4357 | 4,3792 |
+| **Pagal pavardę** | 0,0008 | 0,0068 | 0,0495 | 0,4265 | 4,0450 |
+| **Pagal vardą** | 0,0008 | 0,0069 | 0,0509 | 0,4382 | 4,3159 |
+| **Pagal galutinį balą** | 0,0008 | 0,0065 | 0,0486 | 0,4357 | 4,3792 |
 
 #### Surūšiuotų studentų išvedimas į du naujus failus
 
 | Rūšiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,003 | 0,015 | 0,144 | 1,389 | 13,906 |
-| Pagal vardą | 0,003 | 0,016 | 0,116 | 1,697 | 14,142 |
-| Pagal galutinį balą | 0,003 | 0,016 | 0,152 | 1,611 | 15,893 |
+| **Pagal pavardę** | 0,003 | 0,015 | 0,144 | 1,389 | 13,906 |
+| **Pagal vardą** | 0,003 | 0,016 | 0,116 | 1,697 | 14,142 |
+| **Pagal galutinį balą** | 0,003 | 0,016 | 0,152 | 1,611 | 15,893 |
 
 ### Išvados
 
@@ -76,29 +76,29 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Nuskaitymas | 0,003 |  0,035 |  0,232 | 1,967 | 18,517 |
+| **Nuskaitymas** | 0,003 |  0,035 |  0,232 | 1,967 | 18,517 |
 
 #### Studentų skirstymas į dvi grupes
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Skirstymas | 0,0008 | 0,005 | 0,049 | 0,422 | 4,316 |
+| **Skirstymas** | 0,0008 | 0,005 | 0,049 | 0,422 | 4,316 |
 
 #### Rikiavimas
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,006 | 0,078 |  0,965 | 13,643 | 159,889 |
-| Pagal vardą | 0,006 | 0,079 | 1,01 | 13,693 | 142,82 |
-| Pagal galutinį balą | 0,004 | 0,046 | 0,534 | 7,336 | 100,335 |
+| **Pagal pavardę** | 0,006 | 0,078 |  0,965 | 13,643 | 159,889 |
+| **Pagal vardą** | 0,006 | 0,079 | 1,01 | 13,693 | 142,82 |
+| **Pagal galutinį balą** | 0,004 | 0,046 | 0,534 | 7,336 | 100,335 |
  
 #### Išvedimas į du naujus failus
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,003 | 0,017 | 0,124 | 1,513 | 14,345 |
-| Pagal vardą | 0,003 | 0,015 | 0,135 | 1,410 | 14,8561 |
-| Pagal galutinį balą | 0,003 | 0,016 | 0,156 | 1,576 | 17,408 |
+| **Pagal pavardę** | 0,003 | 0,017 | 0,124 | 1,513 | 14,345 |
+| **Pagal vardą** | 0,003 | 0,015 | 0,135 | 1,410 | 14,8561 |
+| P**agal galutinį balą** | 0,003 | 0,016 | 0,156 | 1,576 | 17,408 |
 
 ### std::list
 
@@ -106,29 +106,29 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Nuskaitymas | 0,003 | 0,025 | 0,214 | 1,933 | 19,761 |
+| **Nuskaitymas** | 0,003 | 0,025 | 0,214 | 1,933 | 19,761 |
 
 #### Studentų skirstymas į dvi grupes
 
 | Žingsnis | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Skirstymas | 0,0008 | 0,006 | 0,052 | 0,456 | 4,762 |
+| **Skirstymas** | 0,0008 | 0,006 | 0,052 | 0,456 | 4,762 |
 
 #### Rikiavimas
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,002 | 0,026 | 0,279 | 3,911 | 38,341 |
-| Pagal vardą | 0,002 | 0,027 | 0,281 | 3,778 | 38,672 |
-| Pagal galutinį balą | 0,003 | 0,035 | 0,453 | 6,240 | 81,825 |
+| **Pagal pavardę** | 0,002 | 0,026 | 0,279 | 3,911 | 38,341 |
+| **Pagal vardą** | 0,002 | 0,027 | 0,281 | 3,778 | 38,672 |
+| **Pagal galutinį balą** | 0,003 | 0,035 | 0,453 | 6,240 | 81,825 |
 
 #### Išvedimas į du naujus failus
 
 | Rikiavimas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
 |---|---|---|---|---|---|
-| Pagal pavardę | 0,004 | 0,018 | 0,149 | 1,622 | 15,607 |
-| Pagal vardą | 0,003 | 0,019 | 0,148 | 1,653 | 16,091 |
-| Pagal galutinį balą | 0,003 | 0,017 | 0,238 | 1,836 | 18,711 |
+| **Pagal pavardę** | 0,004 | 0,018 | 0,149 | 1,622 | 15,607 |
+| **Pagal vardą** | 0,003 | 0,019 | 0,148 | 1,653 | 16,091 |
+| **Pagal galutinį balą** | 0,003 | 0,017 | 0,238 | 1,836 | 18,711 |
 
 ### Atminties adresai
 **std::vector**
@@ -153,23 +153,32 @@ List adresų skirtumai nepastovūs.
 
 ## v1.0:
 
-- Pridėtos 3 studentų skirstymo į dvi kategorijas (vargšiukai ir galvočiai) strategijos, veikiančios su std::vector ir std::list.
+- Pridėtos 3 studentų skirstymo į dvi kategorijas (vargšiukai ir galvočiai) strategijos, veikiančios su `std::vector` ir `std::list`.
+<img width="300" height="78" alt="image" src="https://github.com/user-attachments/assets/2db2ffd1-92f3-42be-9875-875f6f439d57" />
 
 ### Testavimo rezultatai (3 testų vidurkis, sekundėmis)
 
 Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteineriams.
 
 ### std::vector
+
 | Veiksmas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
-|---|---|---|---|---|  
+|---|---|---|---|---|---|  
 | **Skirstymas (1 strategija)** | 0,0008 | 0,006 | 0,049 | 0,43 | 3,99 |
 | **Skirstymas (2 strategija)** | 0,0002 | 0,001 | 113,8 | ... | ... |
 | **Skirstymas (3 strategija)** | 0,0002 | 0,001 | 0,012 | 0,36 | 1,06 |
 
 ### std::list
+
 | Veiksmas | 1 000 | 10 000 | 100 000 | 1 000 000 | 10 000 000 |
-|---|---|---|---|---|  
-| **Skirstymas (1 strategija)** | 1e-06 | 0,005 | 0,056 |  0,45 | 4,1 |
+|---|---|---|---|---|---|
+| **Skirstymas (1 strategija)** | 1e-06 | 0,005 | 0,056 | 0,45 | 4,1 |
 | **Skirstymas (2 strategija)** | 2,7e-06 | 0,002 | 0,026 | 0,21 | 2,1 |
 | **Skirstymas (3 strategija)** | 3e-06 | 0,002 | 0,026 | 0,19 | 1,9 |
 
+### Išvados
+- **1 strategija:** vector ir list veikimo laikai panašūs, tačiau abu konteineriai veikia lėčiau nei naudojant 3 strategiją.
+- **2 strategija su `std::vector` yra labai lėta.** Kai įrašų daug (100 000), ji užtrunka net 113 sekundžių, o su 1 mln. ir 10 mln. sulaukti užtrunka per daug ilgai. Taip yra todėl, kad ištrinant studentą, kompiuteriui tenka perstumti visus likusius studentus. Su list veikia gerokai greičiau, nes elementai pašalinami neperstumiant kitų.
+- **3 strategija** yra greičiausia abiem atvejais.
+
+**Apibendrinimas:** Geriausias pasirinkimas yra **3 strategija**, nes ji efektyviausiai tvarkosi su dideliais duomenų kiekiais abiejuose konteineriuose.
