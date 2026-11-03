@@ -154,7 +154,6 @@ List adresų skirtumai nepastovūs.
 ## v1.0:
 
 - Pridėtos 3 studentų skirstymo į dvi kategorijas (vargšiukai ir galvočiai) strategijos, veikiančios su `std::vector` ir `std::list`.
-<img width="300" height="78" alt="image" src="https://github.com/user-attachments/assets/2db2ffd1-92f3-42be-9875-875f6f439d57" />
 
 ### Testavimo rezultatai (3 testų vidurkis, sekundėmis)
 
@@ -178,7 +177,34 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 
 ### Išvados
 - **1 strategija:** vector ir list veikimo laikai panašūs, tačiau abu konteineriai veikia lėčiau nei naudojant 3 strategiją.
-- **2 strategija su `std::vector` yra labai lėta.** Kai įrašų daug (100 000), ji užtrunka net 113 sekundžių, o su 1 mln. ir 10 mln. sulaukti užtrunka per daug ilgai. Taip yra todėl, kad ištrinant studentą, kompiuteriui tenka perstumti visus likusius studentus. Su list veikia gerokai greičiau, nes elementai pašalinami neperstumiant kitų.
+- **2 strategija su `std::vector` yra labai lėta.** Kai įrašų daug (100 000), ji užtrunka net 113 sekundžių, o su 1 mln. ir 10 mln. sulaukti užtrunka per daug ilgai, todėl testas buvo sustabdytas dėl per ilgo vykdymo. Taip yra todėl, kad ištrinant studentą, kompiuteriui tenka perstumti visus likusius studentus. Su list veikia gerokai greičiau, nes elementai pašalinami neperstumiant kitų.
 - **3 strategija** yra greičiausia abiem atvejais.
 
 **Apibendrinimas:** Geriausias pasirinkimas yra **3 strategija**, nes ji efektyviausiai tvarkosi su dideliais duomenų kiekiais abiejuose konteineriuose.
+
+## Programos įdiegimo ir paleidimo instrukcija
+
+### Naudojimosi instrukcija
+
+Paleidus programą, galima pasirinkti konteinerį: std::vector arba std::list.
+
+<img width="214" height="53" alt="image" src="https://github.com/user-attachments/assets/c6752ef7-a7cf-4dc9-943d-175b4bcceab3" />
+
+Pagrindiniame meniu pasirenkamas norimas veiksmas:
+- 1 – įvesti studentą rankiniu būdu.
+- 2 – sugeneruoti studento pažymius.
+- 3 – nuskaityti studentus iš failo.
+- 4 – išvesti rezultatus pagal vidurkį arba medianą.
+- 5 – sugeneruoti studentų duomenų failą.
+- 6 – suskirstyti studentus į vargšiukus ir galvočius.
+- 7 – baigti programą.
+
+<img width="203" height="109" alt="image" src="https://github.com/user-attachments/assets/b0ebdfb2-7c0a-4251-bb37-85b952f0ab32" />
+
+Pasirinkus studentų skirstymą, reikia nurodyti vieną iš trijų strategijų ir rikiavimo būdą.
+
+<img width="239" height="59" alt="image" src="https://github.com/user-attachments/assets/4b760fc2-e704-4beb-b011-b941e6db89aa" />
+
+<img width="193" height="64" alt="image" src="https://github.com/user-attachments/assets/20372944-c72d-43d4-859b-b51538931983" />
+
+Programa sukurs du rezultatų failus: vargsiukai_vector.txt ir galvociai_vector.txt arba atitinkamus failus su list pavadinimu.
