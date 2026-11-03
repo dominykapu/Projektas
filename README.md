@@ -184,6 +184,22 @@ Testai atlikti su tais pačiais iš anksto sugeneruotais failais abiem konteiner
 
 ## Programos įdiegimo ir paleidimo instrukcija
 
+### Programos kompiliavimas
+
+- Atsisiųsti projektą.
+- Atidaryti CMD terminalą projekto aplanke, kuriame yra CMakeLists.txt.
+- Įvesti šias komandas:
+
+`cmake -S . -B build -G "MinGW Makefiles"`
+
+`cmake --build build`
+
+### Programos paleidimas
+
+- Sukompiliavus programą, ją galima paleisti komanda:
+
+`build\Projektas.exe`
+
 ### Naudojimosi instrukcija
 
 Paleidus programą, galima pasirinkti konteinerį: std::vector arba std::list.
